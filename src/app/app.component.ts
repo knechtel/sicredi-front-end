@@ -23,16 +23,14 @@ export class AppComponent implements OnInit {
       dataPagamento: new FormControl()
     })
   }
-  onSubmit(conta) {
-    this.contaService.saveConta(conta);
-    console.log("mediaItem ola"+conta.nome);
-  }
-  saveCar(form: NgForm) {
 
-      this.contaService.saveConta(this.conta).subscribe(() => {
-        
-      });
-    
+  saveConta(form: NgForm) {
+    this.contaService.saveConta(this.conta).subscribe(() => {
+    });
+    this.conta.nome= '';
+    this.conta.valorOriginal = 0;
+    this.conta.dataPagamento = '';
+    this.conta.dataVencimento = '';
   }
     
 }
