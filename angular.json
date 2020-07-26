@@ -19,6 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+       
+
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -63,6 +65,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "deliver-front-end:build"
+      
           },
           "configurations": {
             "production": {
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "deliver-front-end"
+    }
+  },
+  "defaultProject": "deliver-front-end",
+  "cli": {
+    "analytics": "b9435018-308d-45e9-a523-e10afa955e5f"
+  }
 }
