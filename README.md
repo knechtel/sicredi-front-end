@@ -13,7 +13,7 @@ Na raiz do rpojeto:
   ```
 deliver-front-end$ docker-compose up
   ```
-o front fica exposto http://localhost:4201
+o front fica exposto http://localhost:4201 caso utilize o docker-compose.
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
