@@ -15,7 +15,7 @@
       <tr>
         <td style="padding: 10px;">
           <label for="valor">Valor:   </label>
-          <input type="text" name="valor" id="valor" formControlName="valor"size="35"  [(ngModel)]="conta.valorOriginal" >
+          <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" name="valor" id="valor" formControlName="valor"size="35"  [(ngModel)]="conta.valorOriginal" >
         </td>
     </tr>
     <tr>
