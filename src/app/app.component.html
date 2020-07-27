@@ -4,7 +4,7 @@
   </head>
 <body>
   <form  [formGroup]="form"
-  (ngSubmit)="saveConta(form.value)">
+  (ngSubmit)="openModal(template,form.value)">
     <table style="border: 1px solid black;border-collapse: collapse; border: 1px solid black;">
       <tr>
         <td style="padding: 10px;">
@@ -36,7 +36,30 @@
       </td>
     </tr>
     </table>
+
+
+<ng-template #template>
+  <div class="modal-header">
+  
+  Conta inserida com sucesso.
+  <h4 class="modal-title pull-left"> Nome é: {{nomeConta}}</h4>
+  
+   
+  <button type="button" 
+          class="close pull-right" 
+          (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  
+  <!-- Modal Body -->
+  <div class="modal-body">
+  This is a {{nomeConta}}
+  </div>
+  </ng-template>
   </form>
+ 
+
 </body>
 </html>
 
