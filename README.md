@@ -1,5 +1,21 @@
 # DeliverFrontEnd
 
+Docker:
+Intruções para subir a aplicação.
+
+Primeiro subir o backend:
+  https://github.com/knechtel/deliverIt-backend
+
+Clonar o repositório
+git clone https://github.com/knechtel/deliverIt-frontend.git
+
+Na raiz do rpojeto:
+  ```
+deliver-front-end$ docker-compose up
+  ```
+o front fica exposto http://localhost:4201
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
 
 ## Development server
