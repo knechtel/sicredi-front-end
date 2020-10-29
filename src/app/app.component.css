@@ -1,0 +1,21 @@
+
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+.table {
+	width:100%;
+	border:1px solid $color-form-highlight;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:#000;
+	padding:($half-spacing-unit * 1.5) 0;
+}
+
+.header__item {
+	text-transform:uppercase;
+}

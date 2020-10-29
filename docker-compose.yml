@@ -1,9 +1,8 @@
 version: '3.7'
 
 services:
-
-  front-angular:
-    container_name: front-angular
+  front-deliver:
+    container_name: front-deliver
     build:
       context: .
       dockerfile: Dockerfile

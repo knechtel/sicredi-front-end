@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {  CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from "ng2-currency-mask";
+import {DataTablesModule} from 'angular-datatables';
+import { JwPaginationModule } from 'jw-angular-pagination';
+
+import { CommonModule } from '@angular/common';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
-  decimal: ",",
+  decimal: ",",   
   precision: 2,
   prefix: "R$ ",
   suffix: "",
@@ -17,7 +21,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
+  
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,11 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    DataTablesModule,
+    JwPaginationModule
+  
+    
   ],
   providers: [      { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ],
