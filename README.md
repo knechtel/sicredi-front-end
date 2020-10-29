@@ -1,4 +1,4 @@
-# DeliverFrontEnd
+# FrontEnd
 
 Docker:
 Intruções para subir a aplicação.
