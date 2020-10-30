@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { map } from 'rxjs/operators';
+import { Voto } from '../models/voto';
 import { Pauta } from "../models/pauta";
 import { Observable } from 'rxjs';
 
@@ -16,9 +16,9 @@ export class VotoService {
         return this.http.get<Pauta[]>('http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/pauta/findAll')
     }
 
-    savePauta(pauta: Pauta): Observable<Pauta> {
-        return this.http.post<Pauta>("http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/voto/create", pauta)
-     
+    saveVoto(voto: Voto): Observable<Voto> {
+        return this.http.post<Voto>("http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/voto/create", voto)
+     //  return this.http.post<Voto>("http://localhost:8081/api/voto/create", voto)
     }
 }
 

@@ -24,9 +24,9 @@
           <th>Pauta</th>
           <th>Id</th>
           <!-- <th>Visualizar</th> -->
-          <tr *ngFor="let item of listaAssociado; let i = index">
+          <tr *ngFor="let item of listaAssociado; ">
             <td> {{item.nome}}</td>
-            <td> {{ i+1}}</td>
+            <td> {{item.id}}</td>
             <!-- <td><input (click)="doForm(i)" [index]="i" value="send" type="button" /> -->
           </tr>
         </table>
@@ -51,7 +51,7 @@
           <!-- <th>Visualizar</th> -->
           <tr *ngFor="let item of pageOfItems; let i = index">
             <td> {{item.texto}}</td>
-            <td> {{ i+1}}</td>
+            <td> {{ item.id}}</td>
             <!-- <td><input (click)="doForm(i)" [index]="i" value="send" type="button" /> -->
           </tr>
         </table>
@@ -117,29 +117,47 @@
   </div>
   <div><br></div>
   <div [hidden]="isHiddenVoto">
-    <form [formGroup]="formAssociado" (ngSubmit)="saveAssociado(form.value)">
+    <form [formGroup]="formVoto" (ngSubmit)="saveVoto(form.value)">
       <table>
         <tr>
           <td>id Associado</td>
-          <td><input type="text" formControlName="nome" [(ngModel)]="associado.nome" /></td>
+          <td><input type="text" formControlName="idAssociado" [(ngModel)]="voto.idAssociado" /></td>
         </tr>
         <tr>
           <td>id pauta</td>
-          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf" /></td>
+          <td><input type="text" formControlName="idPauta" [(ngModel)]="voto.idPauta" /></td>
         </tr>
         <tr>
           <td>SIM/NAO</td>
-          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf" /></td>
+          <td><input type="text" formControlName="voto" [(ngModel)]="voto.votoEnum" /></td>
         </tr>
         <tr>
           <input value="Enviar" type="button" type="submit" />
         </tr>
       </table>
     </form>
+    
+  </div>
+
+<div>
+<div><br><br><br></div>
+ <div>
+  <form [formGroup]="formIdPauta"(ngSubmit)="iniciaVotacao(form.value)"> 
+    <table>
+      <tr>
+        <td>id da pauta para iniciar votacao</td>
+        <td><input type="text"  formControlName="pautaId" [(ngModel)]="pautaId.id" /></td>
+      </tr>
+      <tr>
+        <input value="Enviar" type="button" type="submit" />
+      </tr>
+    </table>
+  </form>
 
 
     
   </div>
+</div>
 
 </body>
 

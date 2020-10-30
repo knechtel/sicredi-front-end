@@ -1,11 +1,11 @@
 import { Component,OnInit, TemplateRef, ViewChild, ɵConsole } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { PautaService } from './services/pauta.service'
 import { Pauta } from './models/pauta';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Voto } from './models/voto';
 import { NgForm } from '@angular/forms';
-import swal from 'sweetalert2';
 import {  Input } from '@angular/core';
+import { PautaService } from './services/pauta.service'
+import { VotoService } from './services/voto.service';
 import { AssociadoService } from './services/associado.service';
 import { Associado } from './models/associado';
 
@@ -26,16 +26,18 @@ export class AppComponent implements OnInit {
   pageOfAssociado: Array<any>;
   form: FormGroup;
   formAssociado: FormGroup;
-  formVota: FormGroup;
+  formVoto: FormGroup;
+  formIdPauta: FormGroup;
   dtOptions: DataTables.Settings = {};
-
+  pautaId= {} as Pauta;
   items:Pauta[];
   listaAssociado:Associado[];
   pauta = {} as Pauta;
   associado = {} as Associado;
   votaPauta = {} as Pauta;
+  voto = {} as Voto;
 
-  constructor(private pautaService: PautaService,private associadoService:AssociadoService) {
+  constructor(private pautaService: PautaService,private associadoService:AssociadoService,private votoService:VotoService) {
     this.form = new FormGroup({
       texto1: new FormControl('')
     })
@@ -44,9 +46,14 @@ export class AppComponent implements OnInit {
       nome: new FormControl(''),
       cpf: new FormControl('')
     })
-    this.formVota = new FormGroup({
+    this.formVoto = new FormGroup({
       idPauta: new FormControl(''),
-      idAssociado: new FormControl('')
+      idAssociado: new FormControl(''),
+      voto: new FormControl('')
+    })
+
+    this.formIdPauta = new FormGroup({
+      pautaId:new FormControl()
     })
   }
   
@@ -123,9 +130,19 @@ export class AppComponent implements OnInit {
     this.associado.cpf  = '';
   }
 
-  saveVotoPauta(form:NgForm){
-
+  saveVoto(form:NgForm){
+    this.votoService.saveVoto(this.voto).subscribe(() => {
+    });
+    this.voto.idAssociado = 0;
+    this.voto.idPauta = 0;
+    this.voto.votoEnum= 0;
   }
 
+  iniciaVotacao(form:NgForm){
+    this.pautaService.iniciaVotacao(this.pautaId).subscribe(() => {
+    });
+    this.pautaId.id = 0;
+    
+  }
 }
 
