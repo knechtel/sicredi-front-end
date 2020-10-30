@@ -19,14 +19,18 @@ export class AppComponent implements OnInit {
   public isHidden: boolean = true;
   public isHiddenCadastroPauta: boolean = true;
   public isHiddenCadastroAssociado: boolean = true;
+  public isHiddenListaAssociado: boolean = true;
   public isHiddenVoto: boolean = true;
   @Input() public index: number;
   pageOfItems: Array<any>;
+  pageOfAssociado: Array<any>;
   form: FormGroup;
   formAssociado: FormGroup;
   formVota: FormGroup;
   dtOptions: DataTables.Settings = {};
+
   items:Pauta[];
+  listaAssociado:Associado[];
   pauta = {} as Pauta;
   associado = {} as Associado;
   votaPauta = {} as Pauta;
@@ -54,11 +58,16 @@ export class AppComponent implements OnInit {
     lengthMenu : [5, 10, 25],
     processing: true
   };
-
+  this.associadoService.get().subscribe(res=>{
+    this.listaAssociado=res
+    console.log(res)
+  })
   this.pautaService.get().subscribe(res=>{
     this.items=res
   })
   
+
+
   }
   
   doForm(data){
@@ -79,6 +88,10 @@ export class AppComponent implements OnInit {
     // update current page of items
     this.pageOfItems = pageOfItems;
   }
+  onChangePage1(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfAssociado = this.pageOfAssociado;
+  }
 
   doLogin(){
     this.isHidden = !this.isHidden;
@@ -93,6 +106,9 @@ export class AppComponent implements OnInit {
   }
   doVoto(){
     this.isHiddenVoto = !this.isHiddenVoto;
+  }
+  doListaAssociado(){
+    this.isHiddenListaAssociado = !this.isHiddenListaAssociado;
   }
   savePauta(form:NgForm) {
     this.pautaService.savePauta(this.pauta).subscribe(() => {

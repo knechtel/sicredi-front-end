@@ -13,15 +13,15 @@ export class VotoService {
     constructor(private http: HttpClient) {}
 
     get():Observable<Pauta[]> {
-        return this.http.get<Pauta[]>('http://localhost:8082/api/pauta/findAll')
+        return this.http.get<Pauta[]>('http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/pauta/findAll')
     }
 
     savePauta(pauta: Pauta): Observable<Pauta> {
-        return this.http.post<Pauta>("http://localhost:8082/api/voto/create", pauta)
+        return this.http.post<Pauta>("http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/voto/create", pauta)
      
     }
 }
 
 interface PautaResponse{
     pauta : Pauta[];
-  }
+}

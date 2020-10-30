@@ -10,14 +10,41 @@
     <li><a href="news.asp">Associado</a></li>
     <li><a role="button" (click)="doVoto()">Votar pauta</a></li>
     <li><a role="button" (click)="doCadastroAssociado()">Cadastrar Associado</a></li>
+    <li><a role="button" (click)="doListaAssociado()">Lista de associado</a></li>
     <li><a role="button" (click)="doLogin()">Login</a></li>
     <li><a role="button" (click)="doCadastroPauta()">Cadastrar pauta</a></li>
   </ul>
+
+  <form>
+    <div>
+      
+      <div class="card-body" [hidden]="isHiddenListaAssociado ">
+        <h3 class="card-header">Lista de ASSOCIADOS do sistema.</h3>
+        <table class="table">
+          <th>Pauta</th>
+          <th>Id</th>
+          <!-- <th>Visualizar</th> -->
+          <tr *ngFor="let item of listaAssociado; let i = index">
+            <td> {{item.nome}}</td>
+            <td> {{ i+1}}</td>
+            <!-- <td><input (click)="doForm(i)" [index]="i" value="send" type="button" /> -->
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="card-footer pb-0 pt-3" [hidden]="isHiddenListaAssociado ">
+          <jw-pagination [items]="listaAssociado" (changePage)="onChangePage1($event)"></jw-pagination>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
   <form>
     <div class="card text-center m-3">
       <h3 class="card-header">Lista de pautas do sistema.</h3>
       <div class="card-body">
-        
+
         <table class="table">
           <th>Pauta</th>
           <th>Id</th>
@@ -26,8 +53,8 @@
             <td> {{item.texto}}</td>
             <td> {{ i+1}}</td>
             <!-- <td><input (click)="doForm(i)" [index]="i" value="send" type="button" /> -->
-           </tr>
-      </table>
+          </tr>
+        </table>
       </div>
       <div class="card-footer pb-0 pt-3">
         <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
@@ -36,80 +63,85 @@
   </form>
   <div [hidden]="isHidden">
     <table>
-        <tr>
-            <td>Login</td>
-            <td><input type="text"/></td>
-        </tr>
-        <tr>
-          <td>Senha</td>
-          <td><input type="password"/></td>
-        </tr>
-        <tr>
-          <input value="Enviar" type="button"/>
-        </tr>
-      </table>
+      <tr>
+        <td>Login</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Senha</td>
+        <td><input type="password" /></td>
+      </tr>
+      <tr>
+        <input value="Enviar" type="button" />
+      </tr>
+    </table>
   </div>
 
   <div>
     <br><br>
   </div>
   <div [hidden]="isHiddenCadastroPauta">
-<form [formGroup]="form"
-(ngSubmit)="savePauta(form.value)"> 
+    <form [formGroup]="form" (ngSubmit)="savePauta(form.value)">
       <table>
-          <tr>
-              <td>Pauta</td>
-              <td><input type="text"  size="50"  id="texto1" formControlName="texto1" [(ngModel)]="pauta.texto"/></td>
-          </tr>
-          
-          <tr>
-            <input value="Enviar" type="button" type="submit" />
-          </tr>
-        </table>
-</form>
+        <tr>
+          <td>Pauta</td>
+          <td><input type="text" size="50" id="texto1" formControlName="texto1" [(ngModel)]="pauta.texto" /></td>
+        </tr>
+
+        <tr>
+          <input value="Enviar" type="button" type="submit" />
+        </tr>
+      </table>
+    </form>
   </div>
 
   <div>
     <br><br>
   </div>
   <div [hidden]="isHiddenCadastroAssociado">
-  <form [formGroup]="formAssociado"
-  (ngSubmit)="saveAssociado(form.value)">
-    <table>
+    <form [formGroup]="formAssociado" (ngSubmit)="saveAssociado(form.value)">
+      <table>
         <tr>
-            <td>Nome</td>
-            <td><input type="text" formControlName="nome" [(ngModel)]="associado.nome" /></td>
+          <td>Nome</td>
+          <td><input type="text" formControlName="nome" [(ngModel)]="associado.nome" /></td>
         </tr>
         <tr>
           <td>CPF</td>
-          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf"  /></td>
-      </tr>
+          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf" /></td>
+        </tr>
         <tr>
-          <input value="Enviar" type="button" type="submit"/>
+          <input value="Enviar" type="button" type="submit" />
         </tr>
       </table>
-   </form>
-</div>
-<div><br></div>
-<div [hidden]="isHiddenVoto">
-  <form [formGroup]="formAssociado"
-  (ngSubmit)="saveAssociado(form.value)">
-    <table>
+    </form>
+  </div>
+  <div><br></div>
+  <div [hidden]="isHiddenVoto">
+    <form [formGroup]="formAssociado" (ngSubmit)="saveAssociado(form.value)">
+      <table>
         <tr>
-            <td>id Associado</td>
-            <td><input type="text" formControlName="nome" [(ngModel)]="associado.nome" /></td>
+          <td>id Associado</td>
+          <td><input type="text" formControlName="nome" [(ngModel)]="associado.nome" /></td>
         </tr>
         <tr>
           <td>id pauta</td>
-          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf"  /></td>
-      </tr>
+          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf" /></td>
+        </tr>
         <tr>
-          <input value="Enviar" type="button" type="submit"/>
+          <td>SIM/NAO</td>
+          <td><input type="text" formControlName="cpf" [(ngModel)]="associado.cpf" /></td>
+        </tr>
+        <tr>
+          <input value="Enviar" type="button" type="submit" />
         </tr>
       </table>
-   </form>
-</div>
+    </form>
+
+
+    
+  </div>
 
 </body>
+
 </html>
 <router-outlet></router-outlet>

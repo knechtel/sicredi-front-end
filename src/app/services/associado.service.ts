@@ -13,11 +13,11 @@ export class AssociadoService {
     constructor(private http: HttpClient) {}
 
     get():Observable<Associado[]> {
-        return this.http.get<Associado[]>('http://localhost:8082/api/associado/findAll')
+        return this.http.get<Associado[]>('http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/associado/findAll')
     }
 
     saveAssociado(associado: Associado): Observable<Associado> {
-        return this.http.post<Associado>("http://localhost:8082/api/associado/create", associado)
-     
+        return this.http.post<Associado>("http://ec2-18-231-107-181.sa-east-1.compute.amazonaws.com:8080/api/associado/create", associado)
+        
     }
 }
